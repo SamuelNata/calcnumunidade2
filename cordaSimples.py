@@ -18,18 +18,18 @@ def cordaSimples(poli, xBaixo, xAlto, erro):
 			xRaiz = xAlto - ((fNoPonto(poli, xAlto) * (xBaixo - xAlto)) / \
 					(fNoPonto(poli, xBaixo) - fNoPonto(poli, xAlto)))
 			trocaSinal = fNoPonto(poli, xBaixo) * fNoPonto(poli, xRaiz)
-			print('O resultado de f({}) * f({}) é {}'.format(xBaixo, xRaiz, trocaSinal))
+			print('O resultado de f({0:.5f}) * f({0:.5f}) é {0:.5f}'.format(xBaixo, xRaiz, trocaSinal))
 			if(trocaSinal < 0):
 				xAlto = xRaiz
 			elif(trocaSinal > 0):
 				xBaixo = xRaiz
 			else:
-				print('{} é raiz do polinomio!'.format(xRaiz))
+				print('{0:.5f} é raiz do polinomio!'.format(xRaiz))
 				return xRaiz
 			erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
-			print('O erro é {}-{}/{} = {}%'.format(xRaiz, xRaizAntigo, xRaiz, erroAtual*100))
-			xRaizAntigo = xRaiz
+			print('O erro é {0:.5f}%'.format(erroAtual*100))
 			print()
+			xRaizAntigo = xRaiz			
 			numDeIteracoes = numDeIteracoes + 1
 			time.sleep(1)
 		print('A aproximação precisou de {} iterações!'.format(numDeIteracoes))

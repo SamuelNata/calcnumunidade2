@@ -7,3 +7,6 @@ def fNoPonto(poli, ponto):
 	for i in range(grau):
 		soma = soma + poli[i] * (ponto**(grau-i-1))
 	return soma
+
+def fLinNoPonto(poli, ponto):
+	pass
