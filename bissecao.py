@@ -26,7 +26,7 @@ def bissect(poli, xBaixo, xAlto, erro):
 				print('{} é raiz do polinomio!'.format(xRaiz))
 				return xRaiz
 			erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
-			print('O erro é {}-{}/{} = {}%'.format(xRaiz, xRaizAntigo, xRaiz, erroAtual*100))
+			print('O erro é {0:.5f}%'.format(erroAtual*100))
 			xRaizAntigo = xRaiz
 			print()
 			numDeIteracoes = numDeIteracoes + 1
@@ -35,6 +35,6 @@ def bissect(poli, xBaixo, xAlto, erro):
 		return xRaiz
 
 
-poli = [1, -2, 1]
+poli = [1, 4, -9]
 
-print(bissect(poli, 0, 10, 0.001))
+print(bissect(poli, -20, -1, 0.00001))

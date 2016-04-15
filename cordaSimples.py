@@ -36,6 +36,6 @@ def cordaSimples(poli, xBaixo, xAlto, erro):
 		return xRaiz
 
 
-poli = [1, -2, -5, -6]
+poli = [1, 4, -9]
 
-print(cordaSimples(poli, 0, 4, 0.001))
+print(cordaSimples(poli, -20, -1, 0.001))
