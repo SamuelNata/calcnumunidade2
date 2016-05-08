@@ -1,9 +1,9 @@
 import time
-from utils import fNoPonto
+from utils import f
 
-def cordaSimples(poli, xBaixo, xAlto, erro):
+def cordaSimples( xBaixo, xAlto, erro):
 
-	if(poli == None or xBaixo == None or xAlto == None or erro == None):
+	if(xBaixo == None or xAlto == None or erro == None):
 		print('os argumentos não devem ser vazios!')
 		return None
 	else:
@@ -15,9 +15,8 @@ def cordaSimples(poli, xBaixo, xAlto, erro):
 			print('{} não é um valor válido, insira um valor entre 0 e 1!'.format(erro))
 			return None
 		while(erro < erroAtual):
-			xRaiz = xAlto - ((fNoPonto(poli, xAlto) * (xBaixo - xAlto)) / \
-					(fNoPonto(poli, xBaixo) - fNoPonto(poli, xAlto)))
-			trocaSinal = fNoPonto(poli, xBaixo) * fNoPonto(poli, xRaiz)
+			xRaiz = xAlto - ((f(xAlto) * (xBaixo - xAlto)) / (f(xBaixo) - f(xAlto)))
+			trocaSinal = f(xBaixo) * f(xRaiz)
 			erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
 			print('O resultado de f({0:.7f}) * f({1:.7f}) é {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
 			if(trocaSinal < 0):
@@ -38,6 +37,5 @@ def cordaSimples(poli, xBaixo, xAlto, erro):
 		return xRaiz
 
 
-poli = [1, 3, -10]
-
-print(cordaSimples(poli, -20, -1, 0.001))
+#poli = [1, 3, -10]
+print(cordaSimples(-20, -1, 0.001))
