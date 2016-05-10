@@ -1,4 +1,4 @@
-import math
+from math import *
 #seno de x = sin(x)
 #cosseno de x = cos(x)
 #logaritmo de x base b (base opcional, se n for especficada será e) = log(x, b)
@@ -8,7 +8,7 @@ import math
 
 #DECLARAÇÃO DA FUNÇÃO
 def f(x):
-	y = x**2+3*x-10
+	y = x**2 - 2*x + 3
 	return y
 
 #CALCULO DA DERIVADA (NÃO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
@@ -28,3 +28,14 @@ def fNoPonto(poli, ponto):
 
 def fLinNoPonto(poli, ponto):
 	pass
+
+
+def g(x):
+	y = (x**2 + 3)/2
+	return y
+
+
+def g_(x):
+	h = 0.00001
+	y = (g(x+h)-g(x))/h
+	return y
