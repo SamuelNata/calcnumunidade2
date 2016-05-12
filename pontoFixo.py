@@ -11,7 +11,7 @@ def pontoFixo(xInicial, erroEsperado):
 	else:
 		while(erroAtual > erroEsperado):
 			# Verifica a convergência
-			if(g_(xAtual) >= 1):
+			if(abs(g_(xAtual)) >= 1):
 				print("A sequência diverge...")
 				return -1
 			# Atualiza a aproximação

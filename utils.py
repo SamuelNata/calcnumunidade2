@@ -8,7 +8,7 @@ from math import *
 
 #DECLARAÇÃO DA FUNÇÃO
 def f(x):
-	y = x**2 - 2*x + 3
+	y = exp(-x) - x
 	return y
 
 #CALCULO DA DERIVADA (NÃO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
@@ -31,7 +31,7 @@ def fLinNoPonto(poli, ponto):
 
 
 def g(x):
-	y = (x**2 + 3)/2
+	y = exp(-x)
 	return y
 
 
