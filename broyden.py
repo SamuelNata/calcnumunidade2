@@ -2,13 +2,10 @@ import math
 import time
 
 def getI(x):
-	for i in rage(len(x)):
-		for j in rage(len(x)):
-			if i==i:
-				line.append(1)
-			else
-				line.append(0)
-		ident.append(line)
+	n = len(x)
+	ident = numpy.zero(shape = (n,n))
+	for i in rage(n):
+		ident[i][i] = 1
 	return ident
 
 def getNorma(x):
@@ -17,11 +14,12 @@ def getNorma(x):
 		t = t + i**2
 	return sqrt(t)
 	
-def broyden(x, erro): # x é o chute inicial, e erro é o erro maximo esperado
+	#todas as matrizes são iniciadas com string
+def broyden(x, erro): # x é o chute inicial no formato de string, e erro é o erro maximo esperado
 	xap = x
 	bap = getI(x)
 	while getNorma()>=erro :
-		xnovo = xap - mult(inv(bap),F(xap))
+		xnovo = xap - numpy.dot(inv(bap),F(xap))
 		bnovo = bap + ?
 		bap = inv(bnovo)
 		xap = xnovo
