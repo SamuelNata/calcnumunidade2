@@ -23,7 +23,7 @@ def cordaSimples( xBaixo, xAlto, erro):
 			xRaiz = xAlto - ((f(xAlto) * (xBaixo - xAlto)) / (f(xBaixo) - f(xAlto)))
 			trocaSinal = f(xBaixo) * f(xRaiz)
 			if(xRaiz != 0):
-				erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
+				erroAtual = abs(xRaiz - xRaizAntigo)
 			print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
 			if(trocaSinal < 0):
 				xAlto = xRaiz
@@ -34,10 +34,10 @@ def cordaSimples( xBaixo, xAlto, erro):
 			else:
 				print('{} is a root!'.format(xRaiz))
 				return xRaiz
-			print('The approximation is {0:.7f} with an error of {1:.2f}%'.format(xRaiz, erroAtual*100))
+			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xRaiz, erroAtual))
 			print ' '
-			time.sleep(1)
+			#time.sleep(1)
 		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
 		print ' '
 
-cordaSimples(-20, -1, 0.000000000000000000000001)
+cordaSimples(-400, 0, 0.00001)
