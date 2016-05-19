@@ -1,4 +1,6 @@
 from math import *
+import numpy as np
+
 #seno de x = sin(x)
 #cosseno de x = cos(x)
 #logaritmo de x base b (base opcional, se n for especficada será e) = log(x, b)
@@ -26,9 +28,6 @@ def fNoPonto(poli, ponto):
 		soma = soma + poli[i] * (ponto**(grau-i-1))
 	return soma
 
-def fLinNoPonto(poli, ponto):
-	pass
-
 
 def g(x):
 	y = exp(-x)
@@ -39,3 +38,16 @@ def g_(x):
 	h = 0.00001
 	y = (g(x+h)-g(x))/h
 	return y
+
+def f1(x):
+	y = x[0]**2+x[1]**2-1
+	return y
+
+def f2(x):
+	y = x[0]+x[1]
+	return y
+
+
+def F(x):
+	m = np.asmatrix([f1(x), f2(x)]).T;
+	return 
