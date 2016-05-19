@@ -1,5 +1,5 @@
 from math import *
-import numpy as np
+#import numpy as np
 
 #seno de x = sin(x)
 #cosseno de x = cos(x)
@@ -10,7 +10,9 @@ import numpy as np
 
 #DECLARAÇÃO DA FUNÇÃO
 def f(x):
-	y = exp(-x) - x
+	#y = exp(-x) - x
+	#y = x**2-10*x+3
+	y = x**2-10*x+3
 	return y
 
 #CALCULO DA DERIVADA (NÃO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
@@ -31,6 +33,7 @@ def fNoPonto(poli, ponto):
 
 def g(x):
 	y = exp(-x)
+	#y = (x**2+3)/10
 	return y
 
 
@@ -38,7 +41,7 @@ def g_(x):
 	h = 0.00001
 	y = (g(x+h)-g(x))/h
 	return y
-
+'''
 def f1(x):
 	#print(x)
 	#print(x[0,0])

@@ -1,5 +1,5 @@
-import math
-import time
+from math import *
+from time import *
 from utils import *
 import numpy as np
 
@@ -13,7 +13,9 @@ def getI(x):
 def getNorma(x):
 	t = 0
 	for i in range(x.shape[0]):
-		t = t + x[i,0]
+		print 't recebe t+ ', x[i,0]**2
+		t = t + x[i,0]**2
+	print 't= ', t
 	return sqrt(t)
 
 	#todas as matrizes são iniciadas com string
@@ -51,22 +53,48 @@ def broyden(x, erro): # x é o chute inicial no formato de string, e erro é o e
 		print''
 
 		print 'multiplicacao'
-		print np.dot(deltaX,deltaX.T)
+		print np.dot(deltaX.T,deltaX)
 		print ''
 
-		u = np.dot(np.linalg.inv(np.dot(deltaX,deltaX.T)), (deltaF-np.dot(bap,deltaX)))
+		u = (deltaF-np.dot(bap,deltaX))/ (np.dot(deltaX.T,deltaX)[0,0])
+		print 'u'
+		print u
+		print ''
+
 		baux = bap*1 # para eles não passarem a aponter para o mesmo local da memoria
-		print 'bap = ',bap
-		print 'u = ',u
-		print 'deltaX.T = ',deltaX.T
+		print 'baux'
+		print baux
+		print ''
+
 		bap = bap + np.dot(u,deltaX.T)
-		bapM1 = bapM1 - np.linalg.lstsq( np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX), np.linalg.inv(baux)),1+ln.dot( ln.dot(deltaX.T, np.linalg.inv(baux)), u))
+		print 'bap'
+		print bap
+		print ''
+
+		print '(1+(ln.dot( ln.dot(deltaX.T, np.linalg.inv(baux)), u))[0,0])'
+		print 1+(np.dot( np.dot(deltaX.T, np.linalg.inv(baux)), u))[0,0]
+		print ''
+
+		print 'np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX.T), np.linalg.inv(baux))'
+		print np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX.T), np.linalg.inv(baux))
+		print ''
+
+		bapM1 = bapM1 - np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX.T), np.linalg.inv(baux))/(1+(np.dot( np.dot(deltaX.T, np.linalg.inv(baux)), u))[0,0])
+		print 'bapM1'
+		print bapM1
+		print ''
+
+		erroAtual = getNorma(xnovo-xap)
 		xap = xnovo*1
+		print 'xap'
+		print xap
+		print ''
+
 		print('Iteracao ', iteracao)
 		print('O vetor x atual e: ', xap)
-		print('A norma da diferenca para a ultima solucao e: ',getNorma(xap-baux))
+		print('A norma da diferenca para a ultima solucao e: ', erroAtual)
 		iteracao = iteracao + 1
-		erroAtual = getNorma(xap-baux)
+		
 		sleep(1)
 	print('Solucao encontrada ', xap)
 	print('Com numero de iteracoes: ', iteracao)

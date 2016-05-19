@@ -1,6 +1,7 @@
 import time
 from utils import f
 from utils import f_
+from limites import *
 
 def newton( xBaixo, xAlto, erro):
 	if(xBaixo == None or xAlto == None or erro == None):
@@ -27,4 +28,5 @@ def newton( xBaixo, xAlto, erro):
 
 
 #poli = [1, 3, -10]
-print(newton(-20, -1, 0.001))
+limite = a()
+print(newton(limite[0], limite[1], 0.001))

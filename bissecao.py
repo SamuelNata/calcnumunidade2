@@ -1,8 +1,10 @@
 import time
-from utils import f
+from utils import *
+from limites import *
 
 
 def bissect(xBaixo, xAlto, erro):
+	print "buscando no intervalo {} {}".format(xBaixo, xAlto)
 	numDeIteracoes = 0
 	xRaizAntigo = 0
 	xRaiz = 0
@@ -13,7 +15,7 @@ def bissect(xBaixo, xAlto, erro):
 	while(erro <= erroAtual):
 		xRaiz = (xAlto + xBaixo)/2
 		trocaSinal = f(xBaixo) * f(xRaiz)
-		erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
+		erroAtual = abs((xRaiz - xRaizAntigo))
 		print('O resultado de f({0:.7f}) * f({1:.7f}) é {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
 		if(trocaSinal < 0):
 			xAlto = xRaiz
@@ -30,8 +32,8 @@ def bissect(xBaixo, xAlto, erro):
 		numDeIteracoes = numDeIteracoes + 1
 		time.sleep(1)
 	print('A aproximação precisou de {} iterações!'.format(numDeIteracoes))
+	print ('A solucao foi ',xRaiz)
 	return xRaiz
 
-bissect(-20, -1, 0.00001)
-
-
+limite = a()
+bissect(limite[0], limite[1], 0.00001)

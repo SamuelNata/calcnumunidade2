@@ -1,5 +1,6 @@
 import time
 from utils import f
+from limites import *
 
 def cordaSimples( xBaixo, xAlto, erro):
 
@@ -38,4 +39,5 @@ def cordaSimples( xBaixo, xAlto, erro):
 
 
 #poli = [1, 3, -10]
-print(cordaSimples(-20, -1, 0.001))
+limite = a()
+cordaSimples(limite[0], limite[1], 0.001)

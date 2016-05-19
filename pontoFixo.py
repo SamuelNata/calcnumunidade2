@@ -1,5 +1,6 @@
 import time
 from utils import *
+from limites import *
 
 def pontoFixo(xInicial, erroEsperado):
 	xAtual = xInicial
@@ -11,19 +12,21 @@ def pontoFixo(xInicial, erroEsperado):
 	else:
 		while(erroAtual > erroEsperado):
 			# Verifica a convergência
-			if(abs(g_(xAtual)) >= 1):
-				print("A sequência diverge...")
+			if(abs(g_(xAtual)) > 1):
+				#print "g_(atual) = ", g_(xAtual)
+				print("A função diverge...")
 				return -1
 			# Atualiza a aproximação
 			xAntigo = xAtual
-			xAtual = g(xAtual)
+			xAtual = g(xAntigo)
 			# Atualiza o erro absoluto percentual
-			if(xAtual != 0):
-				erroAtual = abs((xAtual - xAntigo)/xAtual) * 100
+			erroAtual = abs(xAtual - xAntigo)
 			numeroDeIteracoes = numeroDeIteracoes + 1
-			print("A raiz da iteração é {0:.7f}".format(xAtual))
+			print("A raiz da iteração é {0:.7f} com erro {0:.7f}".format(xAtual,erroAtual))
+		print("Precisou de {} iterações".format(numeroDeIteracoes))
 		return xAtual
 	return -1
 
 
+limite = a()
 pontoFixo(0, 0.1)
