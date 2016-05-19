@@ -4,7 +4,7 @@ from utils import *
 import numpy as np
 
 def getI(x):
-	n = len(x)
+	n = x.shape[0]
 	ident = np.asmatrix(np.zeros(shape=(n,n)))
 	for i in range(n):
 		ident[i,i] = 1
@@ -18,21 +18,43 @@ def getNorma(x):
 
 	#todas as matrizes são iniciadas com string
 def broyden(x, erro): # x é o chute inicial no formato de string, e erro é o erro maximo esperado
-	xap = np.asmatrix(x).T;
+	xap = np.asmatrix(x);
+	print'xap'
+	print xap
+	print''
 	bap = np.asmatrix(getI(x))
-	bapM1 = bap = np.asmatrix(getI(x))
+	print'bap'
+	print bap
+	print''
+	bapM1 = np.asmatrix(getI(x))
+	print'bapM1'
+	print bapM1
+	print''
 	iteracao = 1
 	erroAtual = 1000000
 
 	while erroAtual>=erro :
+		print 'np.dot(bapM1,F(xap))'
+		print np.dot(bapM1,F(xap))
+		print ''
 		xnovo = xap - np.dot(bapM1,F(xap))
+		print'xnovo'
+		print xnovo
+		print''
 		deltaF = F(xnovo) - F(xap)
+		print'deltaF'
+		print deltaF
+		print''
 		deltaX = xnovo - xap
+		print'deltaX'
+		print deltaX
+		print''
 
-		print 'am ',deltaX.T
-		np.linalg.inv(np.dot(deltaX.T,deltaX))
+		print 'multiplicacao'
+		print np.dot(deltaX,deltaX.T)
+		print ''
 
-		u = np.dot(np.linalg.inv(np.dot(deltaX.T,deltaX)), (deltaF-np.dot(bap,deltaX)))
+		u = np.dot(np.linalg.inv(np.dot(deltaX,deltaX.T)), (deltaF-np.dot(bap,deltaX)))
 		baux = bap*1 # para eles não passarem a aponter para o mesmo local da memoria
 		print 'bap = ',bap
 		print 'u = ',u
@@ -51,5 +73,5 @@ def broyden(x, erro): # x é o chute inicial no formato de string, e erro é o e
 	return xap	
 
 
-v = np.mat([10,10]).T
+v = np.mat([1,3]).T
 broyden( v, 0.001)
