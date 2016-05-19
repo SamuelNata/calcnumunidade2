@@ -6,27 +6,25 @@ def pontoFixo(xInicial, erroEsperado):
 	xAtual = xInicial
 	erroAtual = 1
 	numeroDeIteracoes = 0
-	# Verifica se o erro esperado é válido
+	# Verifica se o erro esperado eh valido
 	if(erroEsperado < 0 or erroEsperado > 1):
-		print("O erro deve ser um valor entre zero e um!")
+		print('{} is not a valid value, insert a number between 0 and 1'.format(erroEsperado))
+		return None
 	else:
 		while(erroAtual > erroEsperado):
-			# Verifica a convergência
-			if(abs(g_(xAtual)) > 1):
-				#print "g_(atual) = ", g_(xAtual)
-				print("A função diverge...")
-				return -1
-			# Atualiza a aproximação
+			# Atualiza a aproximacao
 			xAntigo = xAtual
 			xAtual = g(xAntigo)
 			# Atualiza o erro absoluto percentual
 			erroAtual = abs(xAtual - xAntigo)
 			numeroDeIteracoes = numeroDeIteracoes + 1
-			print("A raiz da iteração é {0:.7f} com erro {0:.7f}".format(xAtual,erroAtual))
-		print("Precisou de {} iterações".format(numeroDeIteracoes))
-		return xAtual
-	return -1
-
-
-limite = a()
-pontoFixo(0, 0.1)
+			# Verifica a convergencia
+			if(abs(g_(xAtual)) >= 1):
+				#print "g_(atual) = ", g_(xAtual)
+				print('The function g(x) is not converging to a root!')
+				return -1
+			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xAtual, erroAtual))
+			print ' '
+		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xAtual, numeroDeIteracoes))
+		print ' '
+pontoFixo(0, 0.00000000001)

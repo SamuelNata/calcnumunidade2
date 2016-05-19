@@ -1,3 +1,4 @@
+from __future__ import division
 from math import *
 #import numpy as np
 
@@ -10,8 +11,8 @@ from math import *
 
 #DECLARACAO DA FUNCAO
 def f(x):
-	#y = exp(-x) - x
-	y = x**2 -2.5*x - 3.5
+	y = exp(-x) - x		# Raiz exata 0,56714329
+	#y = x**2 -2*x + 3
 	return y
 
 #CALCULO DA DERIVADA (NAO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
