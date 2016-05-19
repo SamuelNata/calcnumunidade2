@@ -6,28 +6,27 @@ from limites import *
 
 def newton( xBaixo, xAlto, erro):
 	if(xBaixo == None or xAlto == None or erro == None):
-		print('os argumentos não devem ser vazios!')
+		print('Please, insert valid entries!')
 		return None
 	else:
+		print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
 		numDeIteracoes = 0
 		xRaizAntigo = 0
 		xRaiz = (xAlto+xBaixo)/2
 		erroAtual = 1
 		if(erro < 0 or erro > 1):
-			print('{} não é um valor válido, insira um valor entre 0 e 1!'.format(erro))
+			print('{} is not a valid value, insert a number between 0 and 1'.format(erro))
 			return None
 		while(abs(f(xRaiz))>=erro):
 			if(f_(xRaiz)==0):
-				print('existe derivada nula no intervalo, use outro metodo')
+				print('There\'s a null derivative in the interval, try other method')
 			xRaiz -= f(xRaiz)/f_(xRaiz)
-			print('a raiz atual é {}.'.format(xRaiz))
+			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xRaiz, erroAtual))
+			print ' '
 			numDeIteracoes = numDeIteracoes + 1
-			time.sleep(1)
-		print('A raiz é {0:.7f} com erro de {1:.7f}%'.format(xRaiz, f(xRaiz)))
-		print('A aproximação precisou de {} iterações!'.format(numDeIteracoes))
-		return xRaiz
+			#time.sleep(1)
+		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xAtual, numeroDeIteracoes))
+		print ' '
 
-
-#poli = [1, 3, -10]
 limite = a()
 print(newton(limite[0], limite[1], 0.001))

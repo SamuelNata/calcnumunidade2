@@ -9,6 +9,7 @@ def cordaSimples( xBaixo, xAlto, erro):
 		print('Please, insert valid entries!')
 		return None
 	else:
+		print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
 		numDeIteracoes = 0
 		xRaizAntigo = 0
 		xRaiz = 0
