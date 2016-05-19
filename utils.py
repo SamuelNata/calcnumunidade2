@@ -40,14 +40,17 @@ def g_(x):
 	return y
 
 def f1(x):
-	y = x[0]**2+x[1]**2-1
+	#print(x)
+	#print(x[0,0])
+	#print(x[1,0])
+	y = (x[0,0])*(x[0,0])+(x[0,1])*(x[0,1])-1
 	return y
 
 def f2(x):
-	y = x[0]+x[1]
+	y = (x[0,0])+(x[0,1])
 	return y
 
 
 def F(x):
 	m = np.asmatrix([f1(x), f2(x)]).T;
-	return 
+	return m

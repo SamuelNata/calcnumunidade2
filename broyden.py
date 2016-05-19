@@ -19,20 +19,27 @@ def getNorma(x):
 	#todas as matrizes são iniciadas com string
 def broyden(x, erro): # x é o chute inicial no formato de string, e erro é o erro maximo esperado
 	xap = np.asmatrix(x).T;
-	bap = getI(x)
-	bapM1 = getI(x)
+	bap = np.asmatrix(getI(x))
+	bapM1 = bap = np.asmatrix(getI(x))
 	iteracao = 1
 	erroAtual = 1000000
-	#print 'erro: ', getNorma(xap-baux)
+
 	while erroAtual>=erro :
 		xnovo = xap - np.dot(bapM1,F(xap))
-		deltaF = F(xnovo)-F(xap)
+		deltaF = F(xnovo) - F(xap)
 		deltaX = xnovo - xap
-		u = ln.linalg.lstsq((deltaF-np.dot(bap,deltaX)),ln.dot(deltaX.T,deltaX))
-		baux = bap
+
+		print 'am ',deltaX.T
+		np.linalg.inv(np.dot(deltaX.T,deltaX))
+
+		u = np.dot(np.linalg.inv(np.dot(deltaX.T,deltaX)), (deltaF-np.dot(bap,deltaX)))
+		baux = bap*1 # para eles não passarem a aponter para o mesmo local da memoria
+		print 'bap = ',bap
+		print 'u = ',u
+		print 'deltaX.T = ',deltaX.T
 		bap = bap + np.dot(u,deltaX.T)
 		bapM1 = bapM1 - np.linalg.lstsq( np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX), np.linalg.inv(baux)),1+ln.dot( ln.dot(deltaX.T, np.linalg.inv(baux)), u))
-		xap = xnovo
+		xap = xnovo*1
 		print('Iteracao ', iteracao)
 		print('O vetor x atual e: ', xap)
 		print('A norma da diferenca para a ultima solucao e: ',getNorma(xap-baux))
