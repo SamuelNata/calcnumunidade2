@@ -1,3 +1,4 @@
+from __future__ import division
 import time
 from utils import f
 from utils import f_
