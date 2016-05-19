@@ -1,11 +1,12 @@
+from __future__ import division
 import time
 from utils import f
-from limites import *
+#from limites import *
 
 def cordaSimples( xBaixo, xAlto, erro):
 
 	if(xBaixo == None or xAlto == None or erro == None):
-		print('os argumentos não devem ser vazios!')
+		print('Please, insert valid entries!')
 		return None
 	else:
 		numDeIteracoes = 0
@@ -13,31 +14,30 @@ def cordaSimples( xBaixo, xAlto, erro):
 		xRaiz = 0
 		erroAtual = 1
 		if(erro < 0 or erro > 1):
-			print('{} não é um valor válido, insira um valor entre 0 e 1!'.format(erro))
+			print('{} is not a valid value, insert a number between 0 and 1'.format(erro))
 			return None
+		print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
 		while(erro < erroAtual):
-			xRaiz = xAlto - ((f(xAlto) * (xBaixo - xAlto)) / (f(xBaixo) - f(xAlto)))
-			trocaSinal = f(xBaixo) * f(xRaiz)
-			erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
-			print('O resultado de f({0:.7f}) * f({1:.7f}) é {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
-			if(trocaSinal < 0):
-				xAlto = xRaiz
-				print('Trocando o limite superior')
-			elif(trocaSinal > 0):
-				xBaixo = xRaiz
-				print('Trocando o limite inferior')
-			else:
-				print('{0:.7f} é raiz do polinomio!'.format(xRaiz))
-				return xRaiz
-			print('A raiz é {0:.7f} com erro de {1:.7f}%'.format(xRaiz, erroAtual*100))
-			print()
 			xRaizAntigo = xRaiz			
 			numDeIteracoes = numDeIteracoes + 1
+			xRaiz = xAlto - ((f(xAlto) * (xBaixo - xAlto)) / (f(xBaixo) - f(xAlto)))
+			trocaSinal = f(xBaixo) * f(xRaiz)
+			if(xRaiz != 0):
+				erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
+			print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
+			if(trocaSinal < 0):
+				xAlto = xRaiz
+				print('Changing the upper limit')
+			elif(trocaSinal > 0):
+				xBaixo = xRaiz
+				print('Changing the lower limit')
+			else:
+				print('{} is a root!'.format(xRaiz))
+				return xRaiz
+			print('The approximation is {0:.7f} with an error of {1:.2f}%'.format(xRaiz, erroAtual*100))
+			print ' '
 			time.sleep(1)
-		print('A aproximação precisou de {} iterações!'.format(numDeIteracoes))
-		return xRaiz
+		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
+		print ' '
 
-
-#poli = [1, 3, -10]
-limite = a()
-cordaSimples(limite[0], limite[1], 0.001)
+cordaSimples(-20, -1, 0.000000000000000000000001)
