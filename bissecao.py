@@ -1,39 +1,40 @@
-import time
+from __future__ import division
 from utils import *
-from limites import *
+import time
+
+#from limites import *
 
 
 def bissect(xBaixo, xAlto, erro):
-	print "buscando no intervalo {} {}".format(xBaixo, xAlto)
+	print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
 	numDeIteracoes = 0
 	xRaizAntigo = 0
 	xRaiz = 0
 	erroAtual = 1
 	if(erro < 0 or erro > 1):
-		print('{} não é um valor válido, insira um valor entre 0 e 1!'.format(erro))
+		print('{} is not a valid value, insert a number between 0 and 1'.format(erro))
 		return None
 	while(erro <= erroAtual):
+		xRaizAntigo = xRaiz
 		xRaiz = (xAlto + xBaixo)/2
+		numDeIteracoes = numDeIteracoes + 1
 		trocaSinal = f(xBaixo) * f(xRaiz)
-		erroAtual = abs((xRaiz - xRaizAntigo))
-		print('O resultado de f({0:.7f}) * f({1:.7f}) é {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
+		if(xRaiz != 0):
+			erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
+		print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
 		if(trocaSinal < 0):
 			xAlto = xRaiz
-			print('Trocando o limite superior')
+			print('Changing the upper limit')
 		elif(trocaSinal > 0):
 			xBaixo = xRaiz
-			print('Trocando o limite inferior')
+			print('Changing the lower limit')
 		else:
-			print('{} é raiz do polinomio!'.format(xRaiz))
+			print('{} is a root!'.format(xRaiz))
 			return xRaiz
-		print('A raiz é {0:.7f} com erro de {1:.7f}%'.format(xRaiz, erroAtual*100))
-		print()
-		xRaizAntigo = xRaiz
-		numDeIteracoes = numDeIteracoes + 1
+		print('The approximation is {0:.7f} with an error of {1:.2f}%'.format(xRaiz, erroAtual*100))
+		print ' '
 		time.sleep(1)
-	print('A aproximação precisou de {} iterações!'.format(numDeIteracoes))
-	print ('A solucao foi ',xRaiz)
-	return xRaiz
+	print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
+	print ' '
 
-limite = a()
-bissect(limite[0], limite[1], 0.00001)
+bissect(-20, -1, 0.00001)

@@ -3,19 +3,19 @@ from math import *
 
 #seno de x = sin(x)
 #cosseno de x = cos(x)
-#logaritmo de x base b (base opcional, se n for especficada será e) = log(x, b)
+#logaritmo de x base b (base opcional, se n for especficada sera e) = log(x, b)
 #e^x = math.exp(x)
 #pi = math.pi
 #e = math.e
 
-#DECLARAÇÃO DA FUNÇÃO
+#DECLARACAO DA FUNCAO
 def f(x):
 	#y = exp(-x) - x
 	#y = x**2-10*x+3
 	y = x**2-10*x+3
 	return y
 
-#CALCULO DA DERIVADA (NÃO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
+#CALCULO DA DERIVADA (NAO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
 def f_(x):
 	h = 0.00001
 	y = (f(x+h)-f(x))/h
@@ -57,3 +57,4 @@ def f2(x):
 def F(x):
 	m = np.asmatrix([f1(x), f2(x)]).T;
 	return m
+'''
