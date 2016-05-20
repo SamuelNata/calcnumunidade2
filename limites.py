@@ -37,7 +37,6 @@ def limiteInferiorPositivo(polinomio):
         return 1+(1/(len(p1)-1-k))**(b/p1[0])
 
 #==============================================================
-#==============================================================
 def limiteSuperiorNegativo(polinomio):
     p1 = polinomio
     p1.reverse()
@@ -82,6 +81,7 @@ def limiteInferiorNegativo(polinomio):
 
 #==============================================================
 #============================================================== 
+#============================================================== 
 def limites(polinomio):
     limitesList = [0, 0, 0, 0]
     limitesList[0] = limiteSuperiorPositivo(polinomio)
@@ -90,19 +90,30 @@ def limites(polinomio):
     limitesList[3] = limiteInferiorNegativo(polinomio)
     return limitesList
 
-
-def a():
+#============================================================== 
+def trocaDeSinal(f): # funcionando perfeitamente*
+    #f(0,True)
     passo = 1
     i_p = 0
-    s_p = 1
-    i_n = -1
+    s_p = 1.5
+    i_n = -1.5
     s_n = 0
-    while( (f(i_p)*f(s_p)>=0) and (f(i_n)*f(s_n)>=0) ):
+    while( f(i_p)*f(s_p)>0 and f(i_n)*f(s_n)>0 ):
+        #print('f({})*f({})>0 and f({})*f({})>0'.format(i_p, s_p, i_n, s_n))
+        #print('{}*{}>0 and {}*{}>0'.format(f(i_p),f(s_p),f(i_n),f(s_n)) )
+        #print("{}>0 and {}>0".format(f(i_p)*f(s_p),f(i_n)*f(s_n)))
+        #print('{} and {}'.format(f(i_p)*f(s_p)>0,f(i_n)*f(s_n)>0 ))
+        #print('')
         s_p = s_p + passo
-        i_p = s_p + passo
+        i_p = i_p + passo
         s_n = s_n - passo
-        i_n = s_n - passo
-    if (f(i_p)*f(s_p)>=0):
+        i_n = i_n - passo
+    #print('f(i_p)*f(s_p)>0 and f(i_n)*f(s_n)>0')
+    #print('{}*{}>0 and {}*{}>0'.format(f(i_p),f(s_p),f(i_n),f(s_n)) )
+    #print("{}>0 and {}>0".format(f(i_p)*f(s_p),f(i_n)*f(s_n)))
+    #print('{} and {}'.format(f(i_p)*f(s_p)>0,f(i_n)*f(s_n)>0 ))
+    #print('')
+    if (f(i_p)*f(s_p)<=0):
         return [i_p,s_p]
     else:
         return [i_n,s_n]

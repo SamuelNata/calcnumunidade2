@@ -9,43 +9,108 @@ from math import *
 #pi = math.pi
 #e = math.e
 
+#=======================================================================
 #DECLARACAO DA FUNCAO
-def f(x):
-	y = exp(-x) - x		# Raiz exata 0,56714329
-	#y = x**2 -2*x + 3
+def f1(x, info = False):
+	if(info):
+		print('f(x) = e^(-x) - x')
+		print('Raiz exata: 0,56714329')
+		return 0
+	y = exp(-x) - x
 	return y
 
+def f2(x, info = False):
+	if(info):
+		print('f(x) = x^2 - 102x + 200')
+		print('Raiz exata: 100 e 2')
+		return 0
+	y = x**2 -102*x + 200
+	return y
+
+def f3(x, info = False):
+	if(info):
+		print('f(x) = x^2 - 25')
+		print('Raiz exata: 5 e -5')
+		return 0
+	y = x**2 - 25
+	return y
+
+#=======================================================================
 #CALCULO DA DERIVADA (NAO PRECISA SER ALTERADO QUANDO ALTERAR O f(x))
-def f_(x):
+def f_(f, x):
 	h = 0.00001
 	y = (f(x+h)-f(x))/h
 	return y
 
-
-def g(x):
+#=======================================================================
+#DECLARANDO AS Gs
+def g1c(x, info = False):
+	if(info):
+		print('g(x) = e^(-x)')
+		return 0
 	y = exp(-x)
-	#y = (x**2+3)/10
 	return y
 
+def g1d(x, info = False):
+	if(info):
+		print('g(x) = ?')
+		return 0
+	y = 0
+	return y
 
-def g_(x):
+#............................
+def g2c(x, info = False):
+	if(info):
+		print('g(x) = 102 - 200/x')
+	if(x==0): x = 0.0000000000000000001 # gambiarra pra eviar divisão por 0
+	y = 102 - 200/x
+	return y
+
+def g2d(x, info = False):
+	if(info):
+		print('g(x) = x^2 - 101x + 200')
+	y = x**2 -102*x + 200
+	return y
+
+#............................
+def g3c(x, info = False):
+	if(info):
+		print('g(x) = ?')
+		return 0
+	if(x==0): x = 0.0000000000000000001 # gambiarra pra eviar divisão por 0
+	y = 0
+	return y
+
+def g3d(x, info = False):
+	if(info):
+		print('g(x) = x^2 + x - 25') # 25/x tambem diverge
+		return 0
+	if(x==0): x = 0.0000000000000000001 # gambiarra pra eviar divisão por 0
+	y = x**2 + x - 25
+	return y
+
+#............................
+
+def g_(g, x):
 	h = 0.00001
 	y = (g(x+h)-g(x))/h
 	return y
+
+#=======================================================================
 '''
-def f1(x):
+def F1(x): #R^n->R
 	#print(x)
 	#print(x[0,0])
 	#print(x[1,0])
 	y = (x[0,0])*(x[0,0])+(x[1,0])*(x[1,0])-1
 	return y
 
-def f2(x):
+def F2(x): #R^n->R
 	y = (x[0,0])+(x[1,0])
 	return y
 
 
-def F(x):
-	m = np.asmatrix([f1(x), f2(x)]).T;
+def F(x): #R^n->R^n
+	m = np.asmatrix([F1(x), F2(x)]).T;
 	return m
 '''

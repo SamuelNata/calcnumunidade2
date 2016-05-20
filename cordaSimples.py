@@ -1,9 +1,14 @@
 from __future__ import division
 import time
-from utils import f
+from utils import *
 #from limites import *
 
+f=f1 # f1 ta definido em utils
+
 def cordaSimples( xBaixo, xAlto, erro):
+	f(0, True)
+	print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
+	print('')
 
 	if(xBaixo == None or xAlto == None or erro == None):
 		print('Please, insert valid entries!')
@@ -36,9 +41,9 @@ def cordaSimples( xBaixo, xAlto, erro):
 				print('{} is a root!'.format(xRaiz))
 				return xRaiz
 			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xRaiz, erroAtual))
-			print ' '
+			print(' ')
 			#time.sleep(1)
 		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
-		print ' '
+		print(' ')
 
 cordaSimples(-400, 0, 0.00001)

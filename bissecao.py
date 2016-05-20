@@ -4,9 +4,13 @@ import time
 
 #from limites import *
 
+f=f1 # f1 ta definido em utils
 
 def bissect(xBaixo, xAlto, erro):
+	f(0, True)
 	print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
+	print('')
+
 	numDeIteracoes = 0
 	xRaizAntigo = 0
 	xRaiz = 0
@@ -32,9 +36,9 @@ def bissect(xBaixo, xAlto, erro):
 			print('{} is a root!'.format(xRaiz))
 			return xRaiz
 		print('The approximation is {0:.7f} with an error of {1:.2f}%'.format(xRaiz, erroAtual*100))
-		print ' '
+		print(' ')
 		time.sleep(1)
 	print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
-	print ' '
+	print(' ')
 
 bissect(-20, -1, 0.00001)
