@@ -1,14 +1,14 @@
+#Funcionando :D
 from __future__ import division
 from utils import *
+from limites import *
 import time
 
-#from limites import *
-
-f=f1 # f1 ta definido em utils
+f=f1 # fi ta definido em utils
 
 def bissect(xBaixo, xAlto, erro):
 	f(0, True)
-	print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
+	print ("Buscando no intervalo [{0}, {1}]".format(xBaixo, xAlto))
 	print('')
 
 	numDeIteracoes = 0
@@ -16,29 +16,32 @@ def bissect(xBaixo, xAlto, erro):
 	xRaiz = 0
 	erroAtual = 1
 	if(erro < 0 or erro > 1):
-		print('{} is not a valid value, insert a number between 0 and 1'.format(erro))
+		print('{} invalido, insira um erro não negativo menor que 1.'.format(erro))
 		return None
+	print('iteração | limiteAnterior	| limiteAtual		| erro')
 	while(erro <= erroAtual):
 		xRaizAntigo = xRaiz
 		xRaiz = (xAlto + xBaixo)/2
 		numDeIteracoes = numDeIteracoes + 1
 		trocaSinal = f(xBaixo) * f(xRaiz)
-		if(xRaiz != 0):
-			erroAtual = abs((xRaiz - xRaizAntigo) / xRaiz)
-		print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
+		erroAtual = abs(xRaiz - xRaizAntigo)
+		print('{0:d} 	| [{1:.5f}, {2:.5f}]	| '.format(numDeIteracoes, xBaixo, xAlto,), end='' )
+		#print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
 		if(trocaSinal < 0):
 			xAlto = xRaiz
-			print('Changing the upper limit')
+			#print('Changing the upper limit')
 		elif(trocaSinal > 0):
 			xBaixo = xRaiz
-			print('Changing the lower limit')
+			#print('Changing the lower limit')
 		else:
-			print('{} is a root!'.format(xRaiz))
+			#print('{} is a root!'.format(xRaiz))
 			return xRaiz
-		print('The approximation is {0:.7f} with an error of {1:.2f}%'.format(xRaiz, erroAtual*100))
-		print(' ')
-		time.sleep(1)
-	print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
+		print('[{0:5f}, {1:.5f}]	| {2:.10f}'.format(xBaixo, xAlto, erroAtual))
+		#print('A aproximação é {0:.7f} com erro {1:.2f}%'.format(xRaiz, erroAtual*100))
+		#print(' ')
+	f(0, True)
+	print('O algoritmo encontroy aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 	print(' ')
 
-bissect(-20, -1, 0.00001)
+limite = trocaDeSinal(f);
+bissect(limite[0], limite[1], 0.00001)

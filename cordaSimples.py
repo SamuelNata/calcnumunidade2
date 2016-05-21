@@ -1,49 +1,53 @@
+#funcionando! :D deixei alguns prints anteriores comentados
 from __future__ import division
 import time
 from utils import *
-#from limites import *
+from limites import *
 
-f=f1 # f1 ta definido em utils
+f=f3 # f1 ta definido em utils
 
 def cordaSimples( xBaixo, xAlto, erro):
 	f(0, True)
-	print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
+	print ("Busca no intervalo [{0}, {1}]".format(xBaixo, xAlto))
 	print('')
 
+	if( f(xBaixo)>0 or f(xAlto)<0 ): #concertando limites
+		aux = xAlto
+		xAlto = xBaixo
+		xBaixo = aux
+
 	if(xBaixo == None or xAlto == None or erro == None):
-		print('Please, insert valid entries!')
+		print('Algo errado com o intervalo ou o erro!')
 		return None
 	else:
-		print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
 		numDeIteracoes = 0
-		xRaizAntigo = 0
+		xRaizAntigo = xAlto
 		xRaiz = 0
 		erroAtual = 1
 		if(erro < 0 or erro > 1):
-			print('{} is not a valid value, insert a number between 0 and 1'.format(erro))
+			print('{} é um erro invalido, tente um erro não negativo e menor que 1'.format(erro))
 			return None
-		print ("Searching a root in the interval [{0}, {1}]".format(xBaixo, xAlto))
+		print('iteração | limiteAnterior	| limiteAtual	| erro')
 		while(erro < erroAtual):
 			xRaizAntigo = xRaiz			
 			numDeIteracoes = numDeIteracoes + 1
-			xRaiz = xAlto - ((f(xAlto) * (xBaixo - xAlto)) / (f(xBaixo) - f(xAlto)))
-			trocaSinal = f(xBaixo) * f(xRaiz)
-			if(xRaiz != 0):
-				erroAtual = abs(xRaiz - xRaizAntigo)
-			print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
-			if(trocaSinal < 0):
+			xRaiz = xAlto - ( f(xAlto) * (xBaixo-xAlto) / (f(xBaixo)-f(xAlto)) )
+			#print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
+			print('{0:d} 	| [{1:.5f}, {2:.5f}]	| '.format(numDeIteracoes, xBaixo, xAlto,), end='' )
+			if( f(xRaiz) > 0 ):
 				xAlto = xRaiz
-				print('Changing the upper limit')
-			elif(trocaSinal > 0):
+				#print('Alterando limite superior para {}'.format(xRaiz))
+			elif( f(xRaiz) < 0 ):
 				xBaixo = xRaiz
-				print('Changing the lower limit')
-			else:
-				print('{} is a root!'.format(xRaiz))
-				return xRaiz
-			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xRaiz, erroAtual))
-			print(' ')
-			#time.sleep(1)
-		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
+				#print('Alterando limite inferior para {}'.format(xRaiz))
+			print('[{0:5f}, {1:.5f}]	| {2:.10f}'.format(xBaixo, xAlto, erroAtual))
+			if( f(xRaiz) == 0 ):
+				erroAtual = abs(xRaiz - xRaizAntigo)
+				break
+			erroAtual = abs(xRaiz - xRaizAntigo)
+			#print('A aproximação é {0:.7f} com erro {1:.10f}'.format(xRaiz, erroAtual))
+		print('O algoritmo encontrou aproximação {0:.7f} com  {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 		print(' ')
 
-cordaSimples(-400, 0, 0.00001)
+limites = trocaDeSinal(f)
+cordaSimples(limites[0], limites[1], 0.00001)

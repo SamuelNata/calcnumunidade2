@@ -97,7 +97,7 @@ def g_(g, x):
 	return y
 
 #=======================================================================
-'''
+
 def F1(x): #R^n->R
 	#print(x)
 	#print(x[0,0])
@@ -113,4 +113,3 @@ def F2(x): #R^n->R
 def F(x): #R^n->R^n
 	m = np.asmatrix([F1(x), F2(x)]).T;
 	return m
-'''

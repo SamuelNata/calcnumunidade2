@@ -1,3 +1,4 @@
+#falta só encontrar as g1 (g1d) que divirja e g3 (g3c) que convirja
 import time
 from utils import *
 from limites import *
@@ -21,6 +22,7 @@ def pontoFixo(xInicial, erroEsperado):
 		print('{} is not a valid value, insert a number between 0 and 1'.format(erroEsperado))
 		return None
 	else:
+		print('iretação	| Aproximação		| erro')
 		while(erroAtual > erroEsperado):
 			# Atualiza a aproximacao
 			xAntigo = xAtual
@@ -30,13 +32,13 @@ def pontoFixo(xInicial, erroEsperado):
 			numeroDeIteracoes = numeroDeIteracoes + 1
 			# Verifica a convergencia
 			if(abs(g_(g, xAtual)) >= 1):
-				#print "g_(atual) = ", g_(xAtual)
-				print('The function g(x) is not converging to a root!')
+				print('g(x) não converge!')
 				return -1
-			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xAtual, erroAtual))
-			print(' ')
+			print('{0:.0f}		| {1:.10f}		| {2:.6f}'.format(numeroDeIteracoes, xAtual, erroAtual))
+			#print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xAtual, erroAtual))
 		f(0, True)
-		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xAtual, numeroDeIteracoes))
+		g(0, True)
+		print('Algoritmo obteve aproximação x={0:.7f} com {1:d} iterações!'.format(xAtual, numeroDeIteracoes))
 		print(' ')
 
 
