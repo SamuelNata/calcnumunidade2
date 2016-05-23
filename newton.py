@@ -5,37 +5,39 @@ import time
 from utils import *
 from limites import *
 
-f = f1 # f1 ta definido em utils
+#f = f1 # f1 ta definido em utils
 
-def newton( xChute, erro):
+def newton( xChute, erro, show = False):
 	f(0, True)
-	print('')
+	if(show):
+		print('')
 
 	if(xChute == None or erro == None):
-		print('Please, insert valid entries!')
+		print('Por favor, insira entradas válidas!')
 		return None
 	else:
-		print ("Search begining in {}".format(xChute))
+		print ("Busca começa em {}".format(xChute))
 		numDeIteracoes = 0
 		xRaizAntigo = 0
 		xRaiz = xChute
 		erroAtual = 1
 		if(erro < 0 or erro > 1):
-			print('{} is not a valid value, insert a number between 0 and 1'.format(erro))
+			print('{} não é válido, insira um erro não negativo menor que 1'.format(erro))
 			return None
+		if(show):
+			print('iretação	| Aproximação		| erro')
 		while(abs(f(xRaiz))>=erro):
 			if(f_(f, xRaiz)==0):
-				print('There\'s a null derivative in the interval, try other method')
+				print('A derivada no intervalo é nula, tente outro metodo.')
 			xRaiz -= f(xRaiz)/f_(f, xRaiz)
-			print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xRaiz, erroAtual))
-			print('')
+			if(show):
+				#print('The approximation is {0:.7f} with an error of {1:.10f}'.format(xRaiz, erroAtual))
+				print('{0:.0f}		| {1:.10f}		| {2:.6f}'.format(numeroDeIteracoes, xAtual, erroAtual))
+				print('')
 			numDeIteracoes = numDeIteracoes + 1
 			#time.sleep(1)
-		f(0, True)
-		print('The algorithm found the approximation {0:.7f} with {1:d} iterations!'.format(xRaiz, numDeIteracoes))
+		if(show):
+			f(0, True)
+		print('O algoritmo encontrou a aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 		print('')
 	return
-
-limite = trocaDeSinal(f)
-#print('limites: [{},{}]'.format(limite[0], limite[1]))
-newton(limite[0], 0.000001)

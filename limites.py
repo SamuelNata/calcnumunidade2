@@ -1,27 +1,35 @@
+
 from utils import * 
 
-
-def limiteSuperiorPositivo(polinomio):
+def limiteSuperiorPositivo(polinomio): # funcionando
+    n = len(polinomio)-1
     temRaizPositiva = False
     temK = False
-    for i in range(len(polinomio), 0):
+    temB = False
+    for i in range(n+1):
         if(polinomio[i]<0):
             temRaizPositiva = True
-            if(not temK):
-                k = i
-            if(b<-1*polinomio[i]):
+            if(i!=0 and not temK):
+                k = n-i
+                temK = True
+            if(not temB):
                 b = -1*polinomio[i]
+                temB = True
+            else:
+                if(b<-1*polinomio[i]):
+                    b = -1*polinomio[i]
     if(not temK):
         return 0;
     else:
-        return 1+(1/(len(polinomio)-1-k))**(b/polinomio[0])
+        #print('b={}; an={}; n={}; k={}'.format(b, polinomio[0], n, k))
+        return 1+(b/polinomio[0])**(n-k)
     
 #==============================================================
 def limiteInferiorPositivo(polinomio):
     p1 = polinomio
     for i in range(len(p1)):
-        p1[i] = p1[len(p1)-1-i]
-    
+        p1[i] = polinomio[len(p1)-1-i]
+    print("polinomio{}\n p1{}".format(polinomio, p1))
     temRaizPositiva = False
     temK = False
     for i in range((len(p1)-1), 0):
@@ -79,43 +87,45 @@ def limiteInferiorNegativo(polinomio):
     else:
         return 1+(1/(len(p1)-1-k))**(b/p1[0])
 
+
 #==============================================================
+#====================       ISOLAMENTO   ======================
 #============================================================== 
-#============================================================== 
-def limites(polinomio):
+def limites(f):
+    if( f(0, False, True)==[0] ):
+        print('A função não é um polinomio.')
+        return [0,0,0,0]
     limitesList = [0, 0, 0, 0]
-    limitesList[0] = limiteSuperiorPositivo(polinomio)
-    limitesList[1] = limiteInferiorPositivo(polinomio)
-    limitesList[2] = limiteSuperiorNegativo(polinomio)
-    limitesList[3] = limiteInferiorNegativo(polinomio)
+    limitesList[0] = limiteSuperiorPositivo(f(0, False, True))
+    limitesList[1] = limiteInferiorPositivo(f(0, False, True))
+    limitesList[2] = limiteSuperiorNegativo(f(0, False, True))
+    limitesList[3] = limiteInferiorNegativo(f(0, False, True))
     return limitesList
 
 #============================================================== 
-def trocaDeSinal(f): # funcionando perfeitamente*
-    #f(0,True)
+def trocaDeSinal(f, show = False): # funcionando perfeitamente*
+    if(show):
+        f(0,True)
     passo = 1
     i_p = 0
     s_p = 1.5
     i_n = -1.5
     s_n = 0
-    while( f(i_p)*f(s_p)>0 and f(i_n)*f(s_n)>0 ):
-        #print('f({})*f({})>0 and f({})*f({})>0'.format(i_p, s_p, i_n, s_n))
-        #print('{}*{}>0 and {}*{}>0'.format(f(i_p),f(s_p),f(i_n),f(s_n)) )
-        #print("{}>0 and {}>0".format(f(i_p)*f(s_p),f(i_n)*f(s_n)))
-        #print('{} and {}'.format(f(i_p)*f(s_p)>0,f(i_n)*f(s_n)>0 ))
-        #print('')
+    while( f(i_p)*f(s_p)>0 and f(i_n)*f(s_n)>0 ) and s_p<1000 and i_n>-1000:
         s_p = s_p + passo
         i_p = i_p + passo
         s_n = s_n - passo
         i_n = i_n - passo
-    #print('f(i_p)*f(s_p)>0 and f(i_n)*f(s_n)>0')
-    #print('{}*{}>0 and {}*{}>0'.format(f(i_p),f(s_p),f(i_n),f(s_n)) )
-    #print("{}>0 and {}>0".format(f(i_p)*f(s_p),f(i_n)*f(s_n)))
-    #print('{} and {}'.format(f(i_p)*f(s_p)>0,f(i_n)*f(s_n)>0 ))
-    #print('')
+
+    if(s_p==1000 or i_n==-1000):
+        print('Nenhuma intervalo contendo raiz encontrado.')
+        print('')
+        return
     if (f(i_p)*f(s_p)<=0):
+        print('')
         return [i_p,s_p]
     else:
+        print('')
         return [i_n,s_n]
 
 

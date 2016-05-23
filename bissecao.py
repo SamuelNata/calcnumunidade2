@@ -4,12 +4,13 @@ from utils import *
 from limites import *
 import time
 
-f=f1 # fi ta definido em utils
+#f=f1 # fi ta definido em utils
 
-def bissect(xBaixo, xAlto, erro):
+def bissect(xBaixo, xAlto, erro, show = False):
 	f(0, True)
 	print ("Buscando no intervalo [{0}, {1}]".format(xBaixo, xAlto))
-	print('')
+	if( show ):
+		print('')
 
 	numDeIteracoes = 0
 	xRaizAntigo = 0
@@ -18,14 +19,16 @@ def bissect(xBaixo, xAlto, erro):
 	if(erro < 0 or erro > 1):
 		print('{} invalido, insira um erro não negativo menor que 1.'.format(erro))
 		return None
-	print('iteração | limiteAnterior	| limiteAtual		| erro')
+	if( show ):
+		print('iteração | limiteAnterior	| limiteAtual		| erro')
 	while(erro <= erroAtual):
 		xRaizAntigo = xRaiz
 		xRaiz = (xAlto + xBaixo)/2
 		numDeIteracoes = numDeIteracoes + 1
 		trocaSinal = f(xBaixo) * f(xRaiz)
 		erroAtual = abs(xRaiz - xRaizAntigo)
-		print('{0:d} 	| [{1:.5f}, {2:.5f}]	| '.format(numDeIteracoes, xBaixo, xAlto,), end='' )
+		if( show ):
+			print('{0:d} 	| [{1:.5f}, {2:.5f}]	| '.format(numDeIteracoes, xBaixo, xAlto,), end='' )
 		#print('f({0:.5f}) * f({1:.5f}) = {2:.7f}'.format(xBaixo, xRaiz, trocaSinal))
 		if(trocaSinal < 0):
 			xAlto = xRaiz
@@ -33,15 +36,15 @@ def bissect(xBaixo, xAlto, erro):
 		elif(trocaSinal > 0):
 			xBaixo = xRaiz
 			#print('Changing the lower limit')
-		else:
+		#else:
 			#print('{} is a root!'.format(xRaiz))
-			return xRaiz
-		print('[{0:5f}, {1:.5f}]	| {2:.10f}'.format(xBaixo, xAlto, erroAtual))
+			#return xRaiz
+
+		if( show ):
+			print('[{0:5f}, {1:.5f}]	| {2:.10f}'.format(xBaixo, xAlto, erroAtual))
 		#print('A aproximação é {0:.7f} com erro {1:.2f}%'.format(xRaiz, erroAtual*100))
 		#print(' ')
-	f(0, True)
+	if( show ):
+		f(0, True)
 	print('O algoritmo encontroy aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 	print(' ')
-
-limite = trocaDeSinal(f);
-bissect(limite[0], limite[1], 0.00001)

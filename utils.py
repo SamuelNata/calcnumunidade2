@@ -11,7 +11,9 @@ from math import *
 
 #=======================================================================
 #DECLARACAO DA FUNCAO
-def f1(x, info = False):
+def f1(x, info = False, poli = False):
+	if(poli):
+		return [0]
 	if(info):
 		print('f(x) = e^(-x) - x')
 		print('Raiz exata: 0,56714329')
@@ -19,7 +21,9 @@ def f1(x, info = False):
 	y = exp(-x) - x
 	return y
 
-def f2(x, info = False):
+def f2(x, info = False, poli = False):
+	if(poli):
+		return [1,-102,200]
 	if(info):
 		print('f(x) = x^2 - 102x + 200')
 		print('Raiz exata: 100 e 2')
@@ -27,7 +31,9 @@ def f2(x, info = False):
 	y = x**2 -102*x + 200
 	return y
 
-def f3(x, info = False):
+def f3(x, info = False, poli = False):
+	if(poli):
+		return [1,0,-25]
 	if(info):
 		print('f(x) = x^2 - 25')
 		print('Raiz exata: 5 e -5')
