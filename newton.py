@@ -7,7 +7,8 @@ from limites import *
 
 #f = f1 # f1 ta definido em utils
 
-def newton( xChute, erro, show = False):
+def newton(f, xChute, erro, show = False):
+	print('(=== NEWTON ===)')
 	f(0, True)
 	if(show):
 		print('')
@@ -38,6 +39,6 @@ def newton( xChute, erro, show = False):
 			#time.sleep(1)
 		if(show):
 			f(0, True)
-		print('O algoritmo encontrou a aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
+		print('O algoritmo de Newton encontrou a aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 		print('')
 	return

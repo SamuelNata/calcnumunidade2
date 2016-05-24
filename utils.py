@@ -104,18 +104,22 @@ def g_(g, x):
 
 #=======================================================================
 
-def F1(x): #R^n->R
+def F_1(x): #R^n->R (a raiz é um circulo de raio 1)
 	#print(x)
 	#print(x[0,0])
 	#print(x[1,0])
 	y = (x[0,0])*(x[0,0])+(x[1,0])*(x[1,0])-1
 	return y
 
-def F2(x): #R^n->R
+def F_2(x): #R^n->R (a raiz é a reta -x)
 	y = (x[0,0])+(x[1,0])
 	return y
 
+def F_3(x): #R^n->R ()
+	y=?
+	return y
+	
 
 def F(x): #R^n->R^n
-	m = np.asmatrix([F1(x), F2(x)]).T;
+	m = np.asmatrix([F_1(x), F_2(x)]).T;
 	return m

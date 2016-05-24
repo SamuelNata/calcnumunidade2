@@ -6,7 +6,8 @@ import time
 
 #f=f1 # fi ta definido em utils
 
-def bissect(xBaixo, xAlto, erro, show = False):
+def bissect(f, xBaixo, xAlto, erro, show = False):
+	print('(=== BISSEÇÃO ===)')
 	f(0, True)
 	print ("Buscando no intervalo [{0}, {1}]".format(xBaixo, xAlto))
 	if( show ):
@@ -46,5 +47,5 @@ def bissect(xBaixo, xAlto, erro, show = False):
 		#print(' ')
 	if( show ):
 		f(0, True)
-	print('O algoritmo encontroy aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
+	print('O algoritmo da bisseção encontro aproximação {0:.7f} com {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 	print(' ')

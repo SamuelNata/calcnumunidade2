@@ -8,7 +8,8 @@ from limites import *
 		# L='c' -> gic (gi que converge)
 		# L='d' -> gid (gi que diverge)
 
-def pontoFixo(xInicial, erroEsperado, show = False):
+def pontoFixo(f, g, xInicial, erroEsperado, show = False):
+	print('(=== PONTO FIXO ===)')
 	f(0, True)
 	g(0, True)
 	print ("Iniciando busca em x = {0}".format(xInicial))
@@ -42,5 +43,5 @@ def pontoFixo(xInicial, erroEsperado, show = False):
 		if(show):
 			f(0, True)
 			g(0, True)
-		print('Algoritmo obteve aproximação x={0:.7f} com {1:d} iterações!'.format(xAtual, numeroDeIteracoes))
-		print(' ')
+		print('Algoritmo do ponto fixo obteve aproximação {0:.7f} com {1:d} iterações!'.format(xAtual, numeroDeIteracoes))
+		print('')

@@ -6,7 +6,8 @@ from limites import *
 
 #f=f3 # f1 ta definido em utils
 
-def cordaSimples( xBaixo, xAlto, erro, show = False):
+def cordaSimples(f, xBaixo, xAlto, erro, show = False):
+	print('(=== CORDA SIMPLES ===)')
 	f(0, True)
 	print ("Busca no intervalo [{0}, {1}]".format(xBaixo, xAlto))
 	if(show):
@@ -52,5 +53,5 @@ def cordaSimples( xBaixo, xAlto, erro, show = False):
 			#print('A aproximação é {0:.7f} com erro {1:.10f}'.format(xRaiz, erroAtual))
 		if(show):
 			f(0, True)
-		print('O algoritmo encontrou aproximação {0:.7f} com  {1:d} iterações!'.format(xRaiz, numDeIteracoes))
+		print('O algoritmo corda simples encontrou aproximação {0:.7f} com  {1:d} iterações!'.format(xRaiz, numDeIteracoes))
 		print(' ')
