@@ -1,6 +1,6 @@
 from math import *
 from time import *
-from utils import *
+from noLinearUtils import *
 import numpy as np
 
 def getI(x):
@@ -13,93 +13,88 @@ def getI(x):
 def getNorma(x):
 	t = 0
 	for i in range(x.shape[0]):
-		print 't recebe t+ ', x[i,0]**2
+		#print('t recebe t + {}'.format(x[i,0]**2) )
 		t = t + x[i,0]**2
-	print 't= ', t
+	#print('t= {}'.format(t))
 	return sqrt(t)
 
 	#todas as matrizes são iniciadas com string
-def broyden(x, erro): # x é o chute inicial no formato de string, e erro é o erro maximo esperado
+def broyden(F, x, erro): # x é o chute inicial no formato de string, e erro é o erro maximo esperado
 	xap = np.asmatrix(x);
-	#print'xap'
-	#print xap
-	#print''
+	#print('xap')
+	#print(xap)
+	#print('')
 	bap = np.asmatrix(getI(x))
 	#print'bap'
 	#print bap
-	#print''
+	#print('')
 	bapM1 = np.asmatrix(getI(x))
 	#print'bapM1'
 	#print bapM1
-	#print''
+	#print('')
 	iteracao = 1
 	erroAtual = 1000000
 
 	while erroAtual>=erro :
 		#print 'np.dot(bapM1,F(xap))'
 		#print np.dot(bapM1,F(xap))
-		#print ''
+		#print('')
 		xnovo = xap - np.dot(bapM1,F(xap))
 		#print'xnovo'
 		#print xnovo
-		#print''
+		#print('')
 		deltaF = F(xnovo) - F(xap)
 		#print'deltaF'
 		#print deltaF
-		#print''
+		#print('')
 		deltaX = xnovo - xap
 		#print'deltaX'
 		#print deltaX
-		#print''
+		#print('')
 
 		#print 'multiplicacao'
 		#print np.dot(deltaX.T,deltaX)
-		#print ''
+		#print('')
 
 		u = (deltaF-np.dot(bap,deltaX))/ (np.dot(deltaX.T,deltaX)[0,0])
 		#print 'u'
 		#print u
-		#print ''
+		#print('')
 
 		baux = bap*1 # para eles não passarem a aponter para o mesmo local da memoria
 		#print 'baux'
 		#print baux
-		#print ''
+		#print('')
 
 		bap = bap + np.dot(u,deltaX.T)
 		#print 'bap'
 		#print bap
-		#print ''
+		#print('')
 
 		#print '(1+(ln.dot( ln.dot(deltaX.T, np.linalg.inv(baux)), u))[0,0])'
 		#print 1+(np.dot( np.dot(deltaX.T, np.linalg.inv(baux)), u))[0,0]
-		#print ''
+		#print('')
 
 		#print 'np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX.T), np.linalg.inv(baux))'
 		#print np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX.T), np.linalg.inv(baux))
-		#print ''
+		#print('')
 
 		bapM1 = bapM1 - np.dot( np.dot( np.dot(np.linalg.inv(baux),u), deltaX.T), np.linalg.inv(baux))/(1+(np.dot( np.dot(deltaX.T, np.linalg.inv(baux)), u))[0,0])
 		#print 'bapM1'
 		#print bapM1
-		#print ''
+		#print('')
 
 		erroAtual = getNorma(xnovo-xap)
 		xap = xnovo*1
 		#print 'xap'
 		#print xap
-		#print ''
+		#print('')
 
 		print('Iteracao ', iteracao)
-		print('O vetor x atual e: ', xap)
+		#print('O vetor x atual e: ', xap)
 		print('A norma da diferenca para a ultima solucao e: ', erroAtual)
 		iteracao = iteracao + 1
 		
-		sleep(1)
 	print('Solucao encontrada ', xap)
 	print('Com numero de iteracoes: ', iteracao)
 	return xap	
-
-
-v = np.mat([1,3]).T
-broyden( v, 0.001)
