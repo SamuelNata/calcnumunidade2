@@ -32,6 +32,11 @@ def broyden(F, x, erro): # x é o chute inicial no formato de string, e erro é 
 	#print'bapM1'
 	#print bapM1
 	#print('')
+
+	#print'F(xap)'
+	#print F(xap)
+	#print('')
+
 	iteracao = 1
 	erroAtual = 1000000
 
